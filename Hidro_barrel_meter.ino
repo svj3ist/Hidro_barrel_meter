@@ -67,9 +67,9 @@ void homePage()
 
  // bfill.emit_p(PSTR("<font color=\"brown\"><h3>digitalRead(A0)</h3>""<h1>$D</h1>"),sensor0);  // h1 размер шрифта.
   bfill.emit_p(PSTR("<h1>barrel 1 = $D$D$D""</h1>"),sensor0, sensor1 ,sensor2 );
-   bfill.emit_p(PSTR("<h1>barrel 2 = $D$D$D""</h1>"),sensor3, sensor4 ,sensor5 );
-    bfill.emit_p(PSTR("<h1>barrel 3 = $D$D$D""</h1>"),sensor6, sensor7 ,sensor8 );
-     bfill.emit_p(PSTR("<h1>barrel 4 = $D$D$D""</h1>"),sensor9, sensor10 ,sensor11 );
+  bfill.emit_p(PSTR("<h1>barrel 2 = $D$D$D""</h1>"),sensor3, sensor4 ,sensor5 );
+  bfill.emit_p(PSTR("<h1>barrel 3 = $D$D$D""</h1>"),sensor6, sensor7 ,sensor8 );
+  bfill.emit_p(PSTR("<h1>barrel 4 = $D$D$D""</h1>"),sensor9, sensor10 ,sensor11 );
 /*  bfill.emit_p(PSTR("<font color=\"blue\"><h3>DigitalRead(A1)</h3>""<h1>$D</h1>"),sensor1);
   bfill.emit_p(PSTR("<font color=\"Amber\"><h3>DigitalRead(A2)</h3>""<h1>$D</h1>"),sensor2);  
   bfill.emit_p(PSTR("<font color=\"Burnt Orange\"><h3>DigitalRead(A3)</h3>" "<h1>$D</h1>"),sensor3);
@@ -99,6 +99,9 @@ pinMode(LedPins[i],INPUT);
 }
 
 void loop() {
+ bool sensor0 = digitalRead(A0);
+
+
 
   delay(1); // Дёргаем микроконтроллер.
 

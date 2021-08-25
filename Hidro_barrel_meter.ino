@@ -7,7 +7,7 @@ static byte myip[] = { 192,168,0,102 };
 byte Ethernet::buffer[1200];
 BufferFiller bfill;
 
-int LedPins[] = { A0,A1,A2,A3,A4,A5,2,3,4,5,6,7,8,9};
+int Pins[] = { A0,A1,A2,A3,A4,A5,2,3,4,5,6,7,8,9};
 
 
 const char http_OK[] =
@@ -67,7 +67,7 @@ void setup() {
 
  for(int i = 0; i <= 12; i ++)
   {
-pinMode(LedPins[i],INPUT);
+pinMode(Pins[i],INPUT);
 }
 }
 

@@ -1,4 +1,4 @@
-For Arduino Uno and ENC28J60 Ethernet controller.
+For Arduino Nano and ENC28J60 Ethernet controller.
 
 
 

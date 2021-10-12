@@ -102,6 +102,7 @@ Serial.println(!sensor12);
 
 void setup() {
       Serial.begin(9600);
+      Serial.println("System ON");
   if (ether.begin(sizeof Ethernet::buffer, mymac,SS) == 0);
 
   if (!ether.dhcpSetup());

@@ -90,7 +90,7 @@ Serial.println(!sensor12);
   Serial.println(" ");
   bfill.emit_p(PSTR(
     "<title>Barrel Meter</title>" 
-  "<meta http-equiv='refresh' content='1'/>")); 
+  "<meta http-equiv='refresh' content='60'/>")); 
 
 
  

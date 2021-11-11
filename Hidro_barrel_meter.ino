@@ -2,12 +2,12 @@
 
 static byte mymac[] = { 0x38,0x09,0x56,0x25,0x60,0x60 };
 
-static byte myip[] = { 192,168,0,102 };
+static byte myip[] = { 192,168,0,106 };
 
 byte Ethernet::buffer[1000];
 BufferFiller bfill;
 
-int Pins[] = { 14,15,16,17,18,19,3,4,5,6,7,8,9};
+int Pins[] = { 14,15,16,17,18,19,3,4,5,6,7,8,9,10,11};
 
 
 const char http_OK[] =
@@ -36,13 +36,15 @@ void homePage()
   bool sensor3 = digitalRead(17);
   bool sensor4 = digitalRead(18);
   bool sensor5 = digitalRead(19);
-  bool sensor6 = digitalRead(8);
-  bool sensor7 = digitalRead(9);
-  bool sensor8 = digitalRead(3);
-  bool sensor9 = digitalRead(4);
-  bool sensor10 = digitalRead(5);
-  bool sensor11 = digitalRead(6);
-  bool sensor12 = digitalRead(7);
+  bool sensor6 = digitalRead(3);
+  bool sensor7 = digitalRead(4);
+  bool sensor8 = digitalRead(5);
+  bool sensor9 = digitalRead(6);
+  bool sensor10 = digitalRead(7);
+  bool sensor11 = digitalRead(8);
+  bool sensor12 = digitalRead(9);
+  bool sensor13 = digitalRead(10);
+  bool sensor14 = digitalRead(11);
 
 Serial.print("barrel 1 = ");
 Serial.print(!sensor0);
@@ -70,7 +72,7 @@ Serial.println(!sensor12);
   int kPa = pressure_kPa;
   Serial.print(" kPa ");
   Serial.print(" ");
-  float pressure_psi = pressure_kPa * 0.14503773773020923;
+  float pressure_psi = pressure_kPa / 100;
   Serial.print(pressure_psi);
   int psi = pressure_psi;
   Serial.println(" psi ");
@@ -92,12 +94,13 @@ Serial.println(!sensor12);
 
 
  
-  bfill.emit_p(PSTR("<h1>barrel 1 = $D$D$D""</h1>"),!sensor0, !sensor1 ,!sensor2 );
-  bfill.emit_p(PSTR("<h1>barrel 2 = $D$D$D""</h1>"),!sensor3, !sensor4 ,!sensor5 );
-  bfill.emit_p(PSTR("<h1>barrel 3 = $D$D$D""</h1>"),!sensor6, !sensor7 ,!sensor8 );
-  bfill.emit_p(PSTR("<h1>barrel 4 = $D$D$D""</h1>"),!sensor9, !sensor10 ,!sensor11 );
-  bfill.emit_p(PSTR("<h1>Pressure kPa = $D""  Pressure psi = $D""</h1>"),kPa, psi );
-  bfill.emit_p(PSTR("<h1>Pressure2 kPa = $D""  Pressure2 psi = $D""</h1>"),kPa2, psi2 );
+  bfill.emit_p(PSTR("<h1>Osmos = $D$D$D""</h1>"),!sensor0, !sensor1 ,!sensor2 );
+  bfill.emit_p(PSTR("<h1>Water = $D$D$D""</h1>"),!sensor3, !sensor4 ,!sensor5 );
+  bfill.emit_p(PSTR("<h1>Washer = $D$D$D""</h1>"),!sensor6, !sensor7 ,!sensor8 );
+  bfill.emit_p(PSTR("<h1>Wax = $D$D$D""</h1>"),!sensor9,!sensor10, !sensor11 );
+  bfill.emit_p(PSTR("<h1>Foam = $D$D$D""</h1>"),!sensor12 ,!sensor13, !sensor14 );
+  bfill.emit_p(PSTR("<h1>Pressure kPa = $D""  Pressure BAR = $D""</h1>"),kPa, psi );
+//  bfill.emit_p(PSTR("<h1>Pressure2 kPa = $D""  Pressure2 psi = $D""</h1>"),kPa2, psi2 );
 }
 
 void setup() {
@@ -108,7 +111,7 @@ void setup() {
   if (!ether.dhcpSetup());
   ether.staticSetup(myip);
 
- for(int i = 0; i <= 12; i ++)
+ for(int i = 0; i <= 14; i ++)
   {
 pinMode(Pins[i],INPUT_PULLUP);
 }
@@ -145,4 +148,3 @@ void loop() {
     ether.httpServerReply(bfill.position()); 
   }
 }
-
